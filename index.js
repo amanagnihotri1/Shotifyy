@@ -5,23 +5,16 @@ const {nanoid}= require("nanoid");
 const mongoose=require("mongoose");
 const ejs= require("ejs");
 const urlshortner= require(__dirname+"/model/urls");
-const  model = require("mongoose");
 const app= express();
 const path= require("path");
 app.use(bodyParser.urlencoded({extended:false}));
 app.set("view engine","ejs");
 app.use(express.static("public"));
-mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true},(err)=>
-{
-    if(err)
-    {
-        console.log("error");
-    }
-    else
-    {
-        console.log("successfully connected to server");
-    }
-});
+app.use(express.json());
+mongoose.connect("mongodb+srv://Aman:Nahipata1@cluster0.kwlnx.mongodb.net/urlshortner?retryWrites=true&w=majority",{useNewUrlParser: true,useUnifiedTopology:true}).then(()=>
+ console.log("connected successfully")   
+).catch(err=> console.log(err)
+)
 app.get("/",async(req,res)=>
 {
     const s=nanoid();  
