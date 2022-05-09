@@ -1,7 +1,7 @@
 const dotenv=require("dotenv").config();
 const express=require("express");
 const bodyParser=require("body-parser");
-const {nanoid}= require("nanoid");
+const nanoid= require("nanoid");
 const mongoose=require("mongoose");
 const ejs= require("ejs");
 const urlshortner= require(__dirname+"/model/urls");
