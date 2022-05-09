@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="./images/unnamed.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/index.css" >   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+</head>
+<body>
+   <div class="main-line">
+    <h1 id="project-title">URL SHORTNER</h1>
+    </div>
+    <div id="formd">
+    <form action="/" method="POST">
+    <input type="url" required name="urlopy" id="urlopy" placeholder="PASTE URL HERE" autocomplete="off">
+  <button type="submit">Shrink</button>
+    </form>
+    </div>
+    <div class="table-container">
+
+      <table>   
+        <tr>
+     <th>FUll URL</th>
+     <th>Short URL</th>   
+     <th>Clicks</th>
+    </tr>
+    <tbody>
+     <% for(let i of allurl) {%>
+        <tr>
+            <td><a href="<%= i.originalLink %>"><%= i.originalLink %></a></td>
+            <td><a href="<%= i.shortLink %>" target="_blank"><%= i.shortLink %></a></td>
+            <td><%= i.clicks %></td>
+          </tr>       
+          <% } %>
+    </tbody>       
+</table>
+</div>
+</body>
+</html>

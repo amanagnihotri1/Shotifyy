@@ -1,0 +1,27 @@
+{
+  "name": "urlshortner",
+  "version": "1.0.0",
+  "description": "-Shrink-URL-https://evening-lake-26109.herokuapp.com/\r URL shortening is a technique on the World Wide Web in which a Uniform Resource Locator (URL) may be made substantially shorter and still direct to the required page.This is achieved by using a redirect which links to the web page that has a long URL.Often the redirect domain name is shorter than the original one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amanagnihotri1/Shrink-URL-.git"
+  },
+  "author": "Aman Agnihotri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amanagnihotri1/Shrink-URL-/issues"
+  },
+  "homepage": "https://github.com/amanagnihotri1/Shrink-URL-#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.5",
+    "nanoid": "^3.3.1"
+  }
+}
