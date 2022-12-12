@@ -14,7 +14,7 @@ const connect=async()=>
 {
 try
 {
- await mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true});
+ await mongoose.connect("mongodb+srv://Aman:Nahipata1@cluster0.kwlnx.mongodb.net/urlshortner?retryWrites=true&w=majority",{useNewUrlParser: true,useUnifiedTopology:true});
 }catch(err)
 {
     console.log(err);
