@@ -41,8 +41,16 @@ const shortUrl= await urlshortner.findOne({shortLink:req.params.shortUrl});
 });
 app.listen(process.env.PORT || 4000,function(err)
 {
-   
-        connect();
+    if(err)
+    {
+        console.log(err);
+
+    }
+    else
+    {
+
+        connect();    
         console.log("server started successfully");
+    }
     
 });
