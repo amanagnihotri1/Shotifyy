@@ -1,7 +1,7 @@
 const dotenv=require("dotenv").config();
 const express=require("express");
 const bodyParser=require("body-parser");
-const nanoid= require("nanoid");
+const { v4: uuidv4 } = require('uuid');
 const mongoose=require("mongoose");
 const ejs= require("ejs");
 const urlshortner= require(__dirname+"/model/urls");
@@ -10,20 +10,18 @@ const path= require("path");
 app.use(bodyParser.urlencoded({extended:false}));
 app.set("view engine","ejs");
 app.use(express.static("public"));
-mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true},(err)=>
+const connect=()=>
 {
-    if(err)
-    {
-        console.log("error");
-    }
-    else
-    {
-        console.log("successfully connected to server");
-    }
-});
+try
+{
+ mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true});
+}catch(err)
+{
+    next(err);
+}
+}
 app.get("/",async(req,res)=>
-{
-    const s=nanoid();  
+{ 
  const allUrl=await urlshortner.find();    
 res.render(path.join(__dirname+"/public/views/url"),{allurl:allUrl});
 });
@@ -44,13 +42,8 @@ const shortUrl= await urlshortner.findOne({shortLink:req.params.shortUrl});
 });
 app.listen(process.env.PORT || 4000,function(err)
 {
-    if(err)
-    {
-        console.log("error occured");
-    }
-    else
-    {   
+   
         connect();
         console.log("server started successfully");
-    }
+    
 });
