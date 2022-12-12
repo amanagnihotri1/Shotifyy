@@ -1,7 +1,7 @@
 const dotenv=require("dotenv").config();
 const express=require("express");
 const bodyParser=require("body-parser");
-const {nanoid}= require("nanoid");
+const nanoid= require("nanoid");
 const mongoose=require("mongoose");
 const ejs= require("ejs");
 const urlshortner= require(__dirname+"/model/urls");
@@ -10,11 +10,17 @@ const path= require("path");
 app.use(bodyParser.urlencoded({extended:false}));
 app.set("view engine","ejs");
 app.use(express.static("public"));
-app.use(express.json());
-mongoose.connect("mongodb+srv://Aman:Nahipata1@cluster0.kwlnx.mongodb.net/urlshortner?retryWrites=true&w=majority",{useNewUrlParser: true,useUnifiedTopology:true}).then(()=>
- console.log("connected successfully")   
-).catch(err=> console.log(err)
-)
+mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true},(err)=>
+{
+    if(err)
+    {
+        console.log("error");
+    }
+    else
+    {
+        console.log("successfully connected to server");
+    }
+});
 app.get("/",async(req,res)=>
 {
     const s=nanoid();  
@@ -43,7 +49,8 @@ app.listen(process.env.PORT || 4000,function(err)
         console.log("error occured");
     }
     else
-    {
+    {   
+        connect();
         console.log("server started successfully");
     }
 });
