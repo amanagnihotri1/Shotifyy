@@ -10,14 +10,15 @@ const path= require("path");
 app.use(bodyParser.urlencoded({extended:false}));
 app.set("view engine","ejs");
 app.use(express.static("public"));
-const connect=()=>
+const connect=async()=>
 {
 try
 {
- mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true});
+ await mongoose.connect(process.env.MONGO_DB,{useNewUrlParser: true,useUnifiedTopology:true});
 }catch(err)
 {
-    next(err);
+    console.log(err);
+    next(500,err);
 }
 }
 app.get("/",async(req,res)=>
@@ -29,7 +30,6 @@ app.post("/",async(req,res)=>
 { 
    await urlshortner.create({originalLink:req.body.urlopy});
    res.redirect("/");
-
 });
 app.get("/:shortUrl",async(req,res)=>
 {
