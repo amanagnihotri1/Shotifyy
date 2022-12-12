@@ -18,7 +18,6 @@ try
 }catch(err)
 {
     console.log(err);
-    next(500,err);
 }
 }
 app.get("/",async(req,res)=>
